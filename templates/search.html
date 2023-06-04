@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <!-- product card  -->
+  
+  
+  <div class="card_container" id="product-cards">
+    {% if pro_d|length !=0 %}
+    <h1 class="text-center">SHOWING RESULT FOR "{{query}}"</h1>
+    <div>
+<div class="_37K3-p" >
+  {% for product in pro_d[0:12] %}
+  <div class="_3YgSsQ">
+    <div class="">
+    <div class="_2n7i6c">
+      <div class="_4ddWXP _3BCh3_ ">
+        <a class="_2rpwqI" title="{{product[1]}}">
+          <div class="_28_T72">
+            <div style="display: block;">
+              <div class="CXW8mj" >
+              <img class="_396cs4"src="{{product[4]}}" alt="{{product[1]}}"></div>
+            </div>
+          </div>
+        </a>
+        <div style="display: block;">
+          <div style="display: block;">
+            <a href="/{{product[0]}}" title="{{product[1]}}" class="s1Q9rs" >
+              {{product[1][0:60]}} ...
+            </a>
+          </div>
+          <div class="gUuXy- _2D5lwg">
+              <span class="_1lRcqv" >
+                <div class="_3LWZlK" style="font-family: arial;">
+                  {{product[2]}}
+                  <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+                </div>
+              </span>
+          </div>
+          <div class="_8VNy32">
+              <div class="_25b18c">
+                <div class="_30jeq3" style="font-weight: 600;">
+                  ₹{{product[3]}}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<div>
+    <h1 class="text-center">RESULT NOT FOUND FOR "{{query}}"</h1>
+    <div class="_37K3-p" >
+    <img src="{{ url_for('static', filename= '/images/notfound.png') }}" alt="not found" style="width: 70%;height: 10%;">    
+    </div>
+        </div>
+{% endif %}
+</div>
+<div class="pagination-buttons">
+    {% if page_num > 1 %}
+    <a href="{{ url_for('prev', page=page_num,query=query) }}" id="prev-button"><button id="prev-button">Previous</button></a>
+    {% endif %}
+    {% if page_num < total_pages %}
+    <a href="{{ url_for('next', page=page_num,query=query) }}" id="next-button"><button id="next-button">Next</button></a>
+    {% endif %}
+  </div>
+</div>
+  </div>
+
+{% endblock %}

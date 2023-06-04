@@ -1,0 +1,11 @@
+{
+  "params":
+  {
+    "local_server": "True",
+    "local_uri": "mysql://root:@localhost/eshop",
+    "prod_uri": "mysql://man787878787:Manty1234@man787878787.mysql.pythonanywhere-services.com/man787878787$eshop",
+    "gmail-user": "montynjiar@gmail.com",
+    "gmail-password": "asefbhkhhpwbrrdc"
+
+  }
+}

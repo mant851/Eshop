@@ -1,0 +1,385 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+
+<!-- home content -->
+<div id="container1">
+  <div id="img1">
+    <a href="#" id="link_category">
+  <img src="{{ url_for('static', filename= '/images/ad1.png') }}" width=100% height=100%>
+    </a>
+</div>
+</div>
+<script>
+  
+  var img = document.getElementById('img1');
+  var link = document.getElementById('link_category');
+  var slides = ['{{ url_for('static', filename= '/images/ad1.png') }}','{{ url_for('static', filename= '/images/ad2.png') }}','{{ url_for('static', filename= '/images/ad4.png') }}','{{ url_for('static', filename= '/images/ad5.png') }}','{{ url_for('static', filename= '/images/background.png') }}' ];
+  var links = ['#','#','#','#','#'];
+
+var Start=0;
+
+function slider(){
+    if(Start<slides.length){
+        Start=Start+1;
+    }
+    else{
+        Start=1;
+    }
+    
+    img.innerHTML = "<a href="+links[Start-1]+"id=link_category>"+"<img  src="+slides[Start-1]+" " +"width=100% height=100%"+">";
+   
+}
+setInterval(slider,2000);
+ 
+</script>
+
+
+
+<!-- product card  -->
+  <div class="card_container" id="product-cards">
+    <h1 class="text-center">TOP RATED PRODUCTS</h1>
+    {% set productn =[] %}
+    {% for product in top %}
+    {% if(product.product_rating==5  and product.product_prize>3000):%}
+    {% set _= productn.append(product)%}
+    {% endif %}
+    {% endfor %}
+    <div>
+<div class="_37K3-p" >
+  {% for product in productn[0:12] %}
+  <div class="_3YgSsQ">
+    <div class="">
+    <div class="_2n7i6c">
+      <div class="_4ddWXP _3BCh3_ ">
+        <a class="_2rpwqI" title="{{product.product_name}}">
+          <div class="_28_T72">
+            <div style="display: block;">
+              <div class="CXW8mj" >
+              <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+            </div>
+          </div>
+        </a>
+        <div style="display: block;">
+          <div style="display: block;">
+            <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+              {{product.product_name[0:60]}} ...
+            </a>
+          </div>
+          <div class="gUuXy- _2D5lwg">
+              <span class="_1lRcqv" >
+                <div class="_3LWZlK" style="font-family: arial;">
+                  {{product.product_rating}}
+                  <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+                </div>
+              </span>
+          </div>
+          <div class="_8VNy32">
+              <div class="_25b18c">
+                <div class="_30jeq3" style="font-weight: 600;">
+                  ₹{{product.product_prize}}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+  
+  <hr>
+<div class="card_container" id="product-cards">
+  <h1 class="text-center">TOP MOBILE AND ASSESSORIE PRODUCTS</h1>
+  {% set productn =[] %}
+  {% for product in mobile %}
+  {% if(product.product_rating>4 and product.product_prize>5000):%}
+  {% set _= productn.append(product)%}
+  {% endif %}
+  {% endfor %}
+  <div>
+<div class="_37K3-p" >
+{% for product in productn[0:6] %}
+<div class="_3YgSsQ" ><div class="">
+  <div class="_2n7i6c">
+    <div class="_4ddWXP _3BCh3_ ";>
+      <a class="_2rpwqI" title="{{product.product_name}}">
+        <div class="_28_T72">
+          <div style="display: block;">
+            <div class="CXW8mj" >
+            <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+          </div>
+        </div>
+      </a>
+      <div style="display: block;">
+        <div style="display: block;">
+          <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+            {{product.product_name[0:60]}} ...
+          </a>
+        </div>
+        <div class="gUuXy- _2D5lwg">
+            <span class="_1lRcqv" >
+              <div class="_3LWZlK" style="font-family: arial;">
+                {{product.product_rating}}
+                <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+              </div>
+            </span>
+        </div>
+        <div class="_8VNy32">
+            <div class="_25b18c">
+              <div class="_30jeq3" style="font-weight: 600;">
+                ₹{{product.product_prize}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination-buttons">
+  <a href="#" id="next-button"><button id="next-button">MORE</button></a>
+</div>
+</div>
+</div>
+
+<hr>
+
+<div class="card_container" id="product-cards">
+  <h1 class="text-center">TOP COMPUTER PRODUCTS</h1>
+  {% set productn =[] %}
+  {% for product in computers %}
+  {% if(product.product_rating>4 and product.product_prize>15000):%}
+  {% set _= productn.append(product)%}
+  {% endif %}
+  {% endfor %}
+  <div>
+<div class="_37K3-p" >
+{% for product in productn[0:6] %}
+<div class="_3YgSsQ">
+  <div class="">
+  <div class="_2n7i6c">
+    <div class="_4ddWXP _3BCh3_ ">
+      <a class="_2rpwqI" title="{{product.product_name}}">
+        <div class="_28_T72">
+          <div style="display: block;">
+            <div class="CXW8mj" >
+            <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+          </div>
+        </div>
+      </a>
+      <div style="display: block;">
+        <div style="display: block;">
+          <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+            {{product.product_name[0:60]}} ...
+          </a>
+        </div>
+        <div class="gUuXy- _2D5lwg">
+            <span class="_1lRcqv" >
+              <div class="_3LWZlK" style="font-family: arial;">
+                {{product.product_rating}}
+                <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+              </div>
+            </span>
+        </div>
+        <div class="_8VNy32">
+            <div class="_25b18c">
+              <div class="_30jeq3" style="font-weight: 600;">
+                ₹{{product.product_prize}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination-buttons">
+  <a href="#" id="next-button"><button id="next-button">MORE</button></a>
+</div>
+</div>
+</div>
+
+<hr>
+
+<div class="card_container" id="product-cards">
+  <h1 class="text-center">TOP AUDIO-VIDEO PRODUCTS</h1>
+  {% set productn =[] %}
+  {% for product in audio %}
+  {% if(product.product_rating>4):%}
+  {% set _= productn.append(product)%}
+  {% endif %}
+  {% endfor %}
+  <div>
+<div class="_37K3-p" >
+{% for product in productn[0:6] %}
+<div class="_3YgSsQ">
+  <div class="">
+  <div class="_2n7i6c">
+    <div class="_4ddWXP _3BCh3_ ">
+      <a class="_2rpwqI" title="{{product.product_name}}">
+        <div class="_28_T72">
+          <div style="display: block;">
+            <div class="CXW8mj" >
+            <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+          </div>
+        </div>
+      </a>
+      <div style="display: block;">
+        <div style="display: block;">
+          <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+            {{product.product_name[0:60]}} ...
+          </a>
+        </div>
+        <div class="gUuXy- _2D5lwg">
+            <span class="_1lRcqv" >
+              <div class="_3LWZlK" style="font-family: arial;">
+                {{product.product_rating}}
+                <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+              </div>
+            </span>
+        </div>
+        <div class="_8VNy32">
+            <div class="_25b18c">
+              <div class="_30jeq3" style="font-weight: 600;">
+                ₹{{product.product_prize}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination-buttons">
+  <a href="#" id="next-button"><button id="next-button">MORE</button></a>
+</div>
+</div>
+</div>
+<hr>
+
+<div class="card_container" id="product-cards">
+  <h1 class="text-center">TOP CAMERA PRODUCTS</h1>
+  {% set productn =[] %}
+  {% for product in camera %}
+  {% if(product.product_rating>4 and product.product_prize>3000):%}
+  {% set _= productn.append(product)%}
+  {% endif %}
+  {% endfor %}
+  <div>
+<div class="_37K3-p" >
+{% for product in productn[0:6] %}
+<div class="_3YgSsQ">
+  <div class="">
+  <div class="_2n7i6c">
+    <div class="_4ddWXP _3BCh3_ ">
+      <a class="_2rpwqI" title="{{product.product_name}}">
+        <div class="_28_T72">
+          <div style="display: block;">
+            <div class="CXW8mj" >
+            <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+          </div>
+        </div>
+      </a>
+      <div style="display: block;">
+        <div style="display: block;">
+          <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+            {{product.product_name[0:60]}} ...
+          </a>
+        </div>
+        <div class="gUuXy- _2D5lwg">
+            <span class="_1lRcqv" >
+              <div class="_3LWZlK" style="font-family: arial;">
+                {{product.product_rating}}
+                <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+              </div>
+            </span>
+        </div>
+        <div class="_8VNy32">
+            <div class="_25b18c">
+              <div class="_30jeq3" style="font-weight: 600;">
+                ₹{{product.product_prize}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination-buttons">
+  <a href="#" id="next-button"><button id="next-button">MORE</button></a>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="card_container" id="product-cards">
+  <h1 class="text-center">TOP HOME - ENTERTAINMENT PRODUCTS</h1>
+  {% set productn =[] %}
+  {% for product in home %}
+  {% if(product.product_rating>4):%}
+  {% set _= productn.append(product)%}
+  {% endif %}
+  {% endfor %}
+  <div>
+<div class="_37K3-p" >
+{% for product in productn[0:6] %}
+<div class="_3YgSsQ">
+  <div class="">
+  <div class="_2n7i6c">
+    <div class="_4ddWXP _3BCh3_ ">
+      <a class="_2rpwqI" title="{{product.product_name}}">
+        <div class="_28_T72">
+          <div style="display: block;">
+            <div class="CXW8mj" >
+            <img class="_396cs4"src="{{product.image_link}}" alt="{{product.product_name}}"></div>
+          </div>
+        </div>
+      </a>
+      <div style="display: block;">
+        <div style="display: block;">
+          <a href="/{{product.Product_id}}" title="{{product.product_name}}" class="s1Q9rs" >
+            {{product.product_name[0:60]}} ...
+          </a>
+        </div>
+        <div class="gUuXy- _2D5lwg">
+            <span class="_1lRcqv" >
+              <div class="_3LWZlK" style="font-family: arial;">
+                {{product.product_rating}}
+                <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+              </div>
+            </span>
+        </div>
+        <div class="_8VNy32">
+            <div class="_25b18c">
+              <div class="_30jeq3" style="font-weight: 600;">
+                ₹{{product.product_prize}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination-buttons">
+  <a href="#" id="next-button"><button id="next-button">MORE</button></a>
+</div>
+</div>
+</div>
+{% endblock %}

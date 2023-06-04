@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<div class="product-container">
+    <div class="product-image">
+      <img src="{{product.image_link}}" alt="Product Image" />
+      <hr />
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product-details">
+      <h1>{{product.product_name}}</h1>
+      <p class="product-price">₹{{product.product_prize}}</p>
+      <p class="product-rating">{{product.product_rating}}  Stars
+      </p>
+      <hr/>
+      <h2>Product Specifications</h2>
+      <table>
+        {% if a|length >=11 %}
+        {% for i in a[0:11] %}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+        </tr>
+        {% endfor %}
+        {% for i in a[11:] %}
+        <tr class="hidden">
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        {% for i in a %}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </table>
+      
+      <button class="read-more-btn">Read More</button>
+      <script>
+        const readMoreBtn = document.querySelector('.read-more-btn');
+        const hiddenRows = document.querySelectorAll('tr');
+    
+        readMoreBtn.addEventListener('click', () => {
+        hiddenRows.forEach(row => {
+        row.style.display = 'table-row';
+        });
+        readMoreBtn.style.display = 'none';
+    });
+      </script>
+
+
+
+      
+    </div>
+    
+  </div>
+  <div class="card_container" id="product-cards">
+    <h1 class="text-center">Suggested Products</h1>
+    <!-- {% set productn =[] %} -->
+    <!-- {% for produc in home %} -->
+    <!-- {% if(product.product_rating>4):%} -->
+    <!-- {% set _= productn.append(product)%} -->
+    <!-- {% endif %} -->
+    <!-- {% endfor %} -->
+    <div>
+  <div class="_37K3-p" >
+  {% for produc in home[0:6] %}
+  <div class="_3YgSsQ">
+    <div class="">
+    <div class="_2n7i6c">
+      <div class="_4ddWXP _3BCh3_ ">
+        <a class="_2rpwqI" title="{{produc.product_name}}">
+          <div class="_28_T72">
+            <div style="display: block;">
+              <div class="CXW8mj" >
+              <img class="_396cs4"src="{{produc.image_link}}" alt="{{produc.product_name}}"></div>
+            </div>
+          </div>
+        </a>
+        <div style="display: block;">
+          <div style="display: block;">
+            <a href="/{{produc.Product_id}}" title="{{produc.product_name}}" class="s1Q9rs" >
+              {{produc.product_name[0:60]}} ...
+            </a>
+          </div>
+          <div class="gUuXy- _2D5lwg">
+              <span class="_1lRcqv" >
+                <div class="_3LWZlK" style="font-family: arial;">
+                  {{produc.product_rating}}
+                  <img src="{{ url_for('static', filename= '/images/star_f.png') }} " height="12px" width="12px" >
+                </div>
+              </span>
+          </div>
+          <div class="_8VNy32">
+              <div class="_25b18c">
+                <div class="_30jeq3" style="font-weight: 600;">
+                  ₹{{produc.product_prize}}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+
+{% endblock %}

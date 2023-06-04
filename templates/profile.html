@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if pro_d|length !=0 %}
+<div class="container" id="login">
+  <div class="row">
+    <div class="col-md-5 py-3 py-md-0" id="side1">
+      <h3 class="text-center">Profile</h3>
+      <div class="d-flex justify-content-center">
+        <img src="{{ url_for('static', filename= '/images/prof.png') }}" height="90px" width="90px" alt="User Avatar" style="border-radius: 50%;">
+      </div>
+    </div>
+    <div class="col-md-7 py-3 py-md-0" id="side2">
+      <form method="post" action="/profile">
+        <h3 class="text-center">Profile Details</h3>
+        <div class="input2 text-center" style="margin-top:10%;">
+            <div class="profile-info">
+          <p class="text-center name">Name: {{pro_d[0][1]}}</p>
+          <p class="text-center email">Email: {{pro_d[0][3]}}</p>
+          <p class="text-center phone">Phone: {{pro_d[0][4]}}</p>
+          <p class="text-center address">Address: {{pro_d[0][5]}}</p>
+        </div>
+          <button name="submit" class="submitb" id="btnlogin" style="margin-top: 2%;">LOGOUT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif%}
+{% endblock %}
+
